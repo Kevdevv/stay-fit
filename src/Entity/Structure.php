@@ -22,6 +22,9 @@ class Structure
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
+    #[ORM\ManyToOne(inversedBy: 'structure')]
+    private ?Franchise $franchise = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Structure
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getFranchise(): ?Franchise
+    {
+        return $this->franchise;
+    }
+
+    public function setFranchise(?Franchise $franchise): self
+    {
+        $this->franchise = $franchise;
 
         return $this;
     }

@@ -39,20 +39,22 @@ class FranchiseRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Franchise[] Returns an array of Franchise objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Franchise[] Returns an array of Franchise objects
+     */
+    public function findByName($fname, $sname): array
+    {
+        return $this->createQueryBuilder('f')
+            ->join(Structure::class, 's')
+            ->andWhere('f.name = :fn')
+            ->andWhere('s.name = :sn')
+            ->setParameter('fn', $fname)
+            ->setParameter('sn', $sname)
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Franchise
 //    {

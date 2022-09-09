@@ -14,6 +14,7 @@
 		<p class="card-text">Sell_drink {{ franchise.sellDrink ? 'Yes' : 'No' }}</p>
 		<a href="{{ path('app_admin_franchise_show', {'id': franchise.id}) }}">show</a>
 		<a href="{{ path('app_admin_franchise_edit', {'id': franchise.id}) }}">edit</a>
+        <a class="btn btn-primary" href="{{ path('app_admin_structure_index', {'id': franchise.name}) }}">Voir les structures</a>
 	</div>
 </div>
 {% endfor %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FranchiseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FranchiseRepository::class)]
@@ -18,6 +20,14 @@ class Franchise
 
     #[ORM\Column]
     private ?bool $sell_drink = null;
+
+    #[ORM\OneToMany(mappedBy: 'franchise', targetEntity: Structure::class)]
+    private Collection $structure;
+
+    public function __construct()
+    {
+        $this->structure = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,36 @@ class Franchise
     public function setSellDrink(bool $sell_drink): self
     {
         $this->sell_drink = $sell_drink;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Structure>
+     */
+    public function getStructure(): Collection
+    {
+        return $this->structure;
+    }
+
+    public function addStructure(Structure $structure): self
+    {
+        if (!$this->structure->contains($structure)) {
+            $this->structure->add($structure);
+            $structure->setFranchise($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStructure(Structure $structure): self
+    {
+        if ($this->structure->removeElement($structure)) {
+            // set the owning side to null (unless already changed)
+            if ($structure->getFranchise() === $this) {
+                $structure->setFranchise(null);
+            }
+        }
 
         return $this;
     }
