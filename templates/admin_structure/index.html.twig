@@ -17,17 +17,12 @@
         <tbody>
         {% for structure in structures %}
             <tr>
-                <td>{{ structure.id }}</td>
                 <td>{{ structure.name }}</td>
                 <td>{{ structure.sellDrink ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_admin_structure_show', {'id': structure.id}) }}">show</a>
                     <a href="{{ path('app_admin_structure_edit', {'id': structure.id}) }}">edit</a>
                 </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
