@@ -12,8 +12,10 @@
 			<h5 class="card-title">{{ franchise.name }}</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Permission globale</h6>
 			<p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons activé' }}</p>
+			<div class="d-flex justify-content-between">
 			<a class="btn btn-primary" href="{{ path('app_admin_franchise_show', {'id': franchise.id}) }}">Voir les structures</a>
-			<a href="{{ path('app_admin_franchise_edit', {'id': franchise.id}) }}">edit</a>
+			<a class="btn btn-info" href="{{ path('app_admin_franchise_edit', {'id': franchise.id}) }}">edit</a>
+			</div>
 		</div>
 	</div>
 {% endfor %}

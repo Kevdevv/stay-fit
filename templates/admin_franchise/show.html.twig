@@ -8,12 +8,10 @@
      {% for structure in franchise.structure %}
      <div class="card mt-4 me-4" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">{{ structure.name }}</p>
+            <h5 class="card-title">{{ structure.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ structure.address }}</h6>
             <p class="card-text">{{ structure.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>
-            <a href="{{ path('app_admin_structure_show', {'id': structure.id}) }}">show</a>
-            <a href="{{ path('app_admin_structure_edit', {'id': structure.id}) }}">edit</a>
+            <a class="btn btn-info" href="{{ path('app_admin_structure_edit', {'id': structure.id}) }}">edit</a>
         </div>
         </div>
             {% endfor %}
