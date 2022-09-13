@@ -31,7 +31,7 @@ class AdminStructureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $structureRepository->add($structure, true);
 
-            return $this->redirectToRoute('app_admin_structure_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin_structure/new.html.twig', [
@@ -73,6 +73,6 @@ class AdminStructureController extends AbstractController
             $structureRepository->remove($structure, true);
         }
 
-        return $this->redirectToRoute('app_admin_structure_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
     }
 }
