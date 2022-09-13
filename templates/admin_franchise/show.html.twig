@@ -19,6 +19,6 @@
         </div>
             {% endfor %}
             </div>
-    <a class="btn btn-primary mt-4 me-2 ms-2 mb-3" href="{{ path('app_admin_structure_new') }}">Ajouter une structure</a>
+    <a class="btn btn-primary mt-4 me-2 ms-2 mb-3" href="{{ path('app_admin_structure_new', {'id': franchise.id}) }}">Ajouter une structure</a>
     <a class="btn btn-info mt-4 mb-3" href="{{ path('app_admin_franchise_index') }}">Retour</a>
 {% endblock %}

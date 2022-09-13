@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Structure;
 use App\Form\StructureType;
+use App\Repository\FranchiseRepository;
 use App\Repository\StructureRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/structure')]
 class AdminStructureController extends AbstractController
@@ -22,11 +23,26 @@ class AdminStructureController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_structure_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, StructureRepository $structureRepository): Response
+    public function new(Request $request, StructureRepository $structureRepository, FranchiseRepository $franchiseRepository): Response
     {
+        // pour recup un parametre en get dd($request->query->get('id'));
+        // pour recup un parametre en post dd($request->request->get('id'));
+
+        $franchise = $franchiseRepository->find($request->query->get('id'));
+
         $structure = new Structure();
+        $structure
+            ->setSellDrink($franchise->isSellDrink())
+            ->setMailing($franchise->isMailing())
+            ->setPromotionSalle($franchise->isPromotionSalle())
+            ->setTeamPlanning($franchise->isTeamPlanning())
+            ->setFranchise($franchise)
+            ;
+
         $form = $this->createForm(StructureType::class, $structure);
         $form->handleRequest($request);
+
+        //dd($structure);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $structureRepository->add($structure, true);
@@ -53,6 +69,8 @@ class AdminStructureController extends AbstractController
     {
         $form = $this->createForm(StructureType::class, $structure);
         $form->handleRequest($request);
+
+        //dd($structure);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $structureRepository->add($structure, true);
