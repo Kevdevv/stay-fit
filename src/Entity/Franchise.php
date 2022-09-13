@@ -24,6 +24,15 @@ class Franchise
     #[ORM\OneToMany(mappedBy: 'franchise', targetEntity: Structure::class)]
     private Collection $structure;
 
+    #[ORM\Column]
+    private ?bool $mailing = null;
+
+    #[ORM\Column]
+    private ?bool $promotion_salle = null;
+
+    #[ORM\Column]
+    private ?bool $team_planning = null;
+
     public function __construct()
     {
         $this->structure = new ArrayCollection();
@@ -84,6 +93,42 @@ class Franchise
                 $structure->setFranchise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isMailing(): ?bool
+    {
+        return $this->mailing;
+    }
+
+    public function setMailing(bool $mailing): self
+    {
+        $this->mailing = $mailing;
+
+        return $this;
+    }
+
+    public function isPromotionSalle(): ?bool
+    {
+        return $this->promotion_salle;
+    }
+
+    public function setPromotionSalle(bool $promotion_salle): self
+    {
+        $this->promotion_salle = $promotion_salle;
+
+        return $this;
+    }
+
+    public function isTeamPlanning(): ?bool
+    {
+        return $this->team_planning;
+    }
+
+    public function setTeamPlanning(bool $team_planning): self
+    {
+        $this->team_planning = $team_planning;
 
         return $this;
     }

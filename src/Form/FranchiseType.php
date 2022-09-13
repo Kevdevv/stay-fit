@@ -14,6 +14,9 @@ class FranchiseType extends AbstractType
         $builder
             ->add('name')
             ->add('sell_drink')
+            ->add('mailing')
+            ->add('promotion_salle')
+            ->add('team_planning')
         ;
     }
 

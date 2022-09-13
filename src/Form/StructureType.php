@@ -17,6 +17,9 @@ class StructureType extends AbstractType
             ->add('name')
             ->add('address')
             ->add('sell_drink')
+            ->add('mailing')
+            ->add('promotion_salle')
+            ->add('team_planning')
             ->add('franchise', EntityType::class, [
                 'class' => Franchise::class,
                 'choice_label' => 'name',
