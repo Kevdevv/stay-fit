@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Structure{% endblock %}
+{% block title %}Liste des structures{% endblock %}
 
 {% block body %}
-    <h1>Structure</h1>
+    <h1 class="ms-3">Liste des structures</h1>
         <div class="d-flex justify-content-center flex-wrap">
      {% for structure in franchise.structure %}
      <div class="card mt-4 me-4" style="width: 18rem;">
@@ -16,6 +16,6 @@
         </div>
             {% endfor %}
             </div>
-    <a href="{{ path('app_admin_structure_new') }}">Ajouter une structure</a>
-    <a href="{{ path('app_admin_franchise_index') }}">back to list</a>
+    <a class="btn btn-primary mt-4 me-2 ms-2" href="{{ path('app_admin_structure_new') }}">Ajouter une structure</a>
+    <a class="btn btn-info mt-4" href="{{ path('app_admin_franchise_index') }}">Retour</a>
 {% endblock %}
