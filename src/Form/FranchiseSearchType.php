@@ -22,7 +22,7 @@ class FranchiseSearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => FranchiseSearch::class,
             'method' => 'get',
-            'csrf_protection' => false,
+            'csrf_protection' => false
         ]);
     }
 
