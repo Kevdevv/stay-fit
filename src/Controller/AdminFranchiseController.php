@@ -4,20 +4,27 @@ namespace App\Controller;
 
 use App\Entity\Franchise;
 use App\Form\FranchiseType;
+use App\Entity\FranchiseSearch;
+use App\Form\FranchiseSearchType;
 use App\Repository\FranchiseRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/franchise')]
 class AdminFranchiseController extends AbstractController
 {
     #[Route('/', name: 'app_admin_franchise_index', methods: ['GET'])]
-    public function index(FranchiseRepository $franchiseRepository): Response
+    public function index(FranchiseRepository $franchiseRepository, Request $request): Response
     {
+        $search = new FranchiseSearch();
+        $form = $this->createForm(FranchiseSearchType::class, $search);
+        $form->handleRequest($request);
+
         return $this->render('admin_franchise/index.html.twig', [
-            'franchises' => $franchiseRepository->findAll(),
+            'franchises' => $franchiseRepository->findAllVisible($search),
+            'form' => $form->createView()
         ]);
     }
 

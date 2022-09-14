@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Franchise;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\FranchiseSearch;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Franchise>
@@ -39,21 +40,24 @@ class FranchiseRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @return Franchise[] Returns an array of Franchise objects
-     */
-    public function findByName($fname, $sname): array
+    public function findAllVisible(FranchiseSearch $search)
     {
-        return $this->createQueryBuilder('f')
-            ->join(Structure::class, 's')
-            ->andWhere('f.name = :fn')
-            ->andWhere('s.name = :sn')
-            ->setParameter('fn', $fname)
-            ->setParameter('sn', $sname)
-            ->orderBy('m.id', 'ASC')
+
+        $query = $this->createQueryBuilder('f');
+
+        if($search->getName())
+        {
+            $query
+                ->andwhere('f.name = :value')
+                ->setParameter('value', $search->getName())
+                ;
+        }
+
+        return $query
             ->getQuery()
             ->getResult()
-        ;
+            ;
+
     }
 
 //    public function findOneBySomeField($value): ?Franchise
