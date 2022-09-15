@@ -24,6 +24,7 @@
 {% for franchise in franchises %}
 	<div class="card me-3 mt-3" style="width: 18rem;">
 		<div class="card-body">
+			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
 			<h5 class="card-title">{{ franchise.name }}</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Permission globale</h6>
 			<p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>

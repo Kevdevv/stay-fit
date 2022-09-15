@@ -8,13 +8,15 @@
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    {{ form_end(form) }}
-
-       <div class="d-flex justify-content-evenly">
+        <div class="d-flex justify-content-evenly">
         <button class="btn btn-primary">{{ button_label|default('Mettre à jour') }}</button>
-        <a class="btn btn-info" href="{{ path('app_admin_franchise_index') }}">Retour</a>
-        {{ include('admin_franchise/_delete_form.html.twig') }}
-       </div>
+        <a class="btn btn-info" href="{{ path('app_admin_franchise_index') }}">Retour</a>         
+    {{ form_end(form) }}
+    {{ include('admin_franchise/_delete_form.html.twig') }}
     </div>
+</div>
+
+
+
 
 {% endblock %}

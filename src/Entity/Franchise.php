@@ -33,6 +33,9 @@ class Franchise
     #[ORM\Column]
     private ?bool $team_planning = null;
 
+    #[ORM\Column]
+    private ?bool $active = null;
+
     public function __construct()
     {
         $this->structure = new ArrayCollection();
@@ -129,6 +132,18 @@ class Franchise
     public function setTeamPlanning(bool $team_planning): self
     {
         $this->team_planning = $team_planning;
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }
