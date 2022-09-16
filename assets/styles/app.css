@@ -22,11 +22,19 @@ body {
     background: #CFCFCF !important;
 }
 
+.btn-danger {
+    background: red;
+}
+
+.btn-danger:hover {
+    background: red !important;
+}
+
 .navbar {
     background: black !important;
 }
 
-.nav-link, .navbar-brand, .navbar-toggler, .navbar-toggler-icon {
+.nav-link, .navbar-brand, .navbar-toggler {
     color: white !important;
 }
 
