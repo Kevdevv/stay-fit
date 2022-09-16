@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class FranchiseSearchType extends AbstractType
 {
@@ -14,6 +15,12 @@ class FranchiseSearchType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('options', ChoiceType::class, [
+                'choices'  => [
+                    'activé' => 'activé',
+                    'désactivé' => 'désactivé',
+                 ],
+            ])
         ;
     }
 

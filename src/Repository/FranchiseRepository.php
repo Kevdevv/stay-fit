@@ -53,6 +53,20 @@ class FranchiseRepository extends ServiceEntityRepository
                 ;
         }
 
+        if($search->getOptions() == 'activé')
+        {
+            $query
+                ->andwhere('f.active = true')
+                ;
+        }
+
+        if($search->getOptions() == 'désactivé')
+        {
+            $query
+                ->andwhere('f.active = false')
+                ;
+        }
+
         return $query
             ->getQuery()
             ->getResult()
