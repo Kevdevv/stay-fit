@@ -14,7 +14,7 @@
             <p class="card-text">{{ franchise.mailing ? 'Faire son mailing activé' : 'Faire son mainling désactivé' }}</p>
             <p class="card-text">{{ franchise.promotionSalle ? 'Promption de la salle activé' : 'Promotion de la salle désactivé' }}</p>
             <p class="card-text">{{ franchise.teamPlanning ? 'Gérer le planning d\'équipe activé' : 'Gérer le planning d\'équipe désactivé' }}</p>
-            <a class="btn btn-info" href="{{ path('app_admin_structure_edit', {'id': structure.id}) }}">edit</a>
+            <a class="btn btn-info" href="{{ path('app_admin_structure_edit', {'id': structure.id}) }}">Modifier</a>
         </div>
         </div>
             {% endfor %}
