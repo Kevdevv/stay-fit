@@ -34,6 +34,9 @@ class Structure
     #[ORM\Column]
     private ?bool $team_planning = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $mail = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +122,18 @@ class Structure
     public function setTeamPlanning(bool $team_planning): self
     {
         $this->team_planning = $team_planning;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }

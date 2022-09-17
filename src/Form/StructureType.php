@@ -17,6 +17,7 @@ class StructureType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('mail')
             ->add('address')
             ->add('sell_drink')
             ->add('mailing')
