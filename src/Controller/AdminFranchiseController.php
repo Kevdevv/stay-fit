@@ -49,7 +49,7 @@ class AdminFranchiseController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Votre Franchise a été créer')
             ->text('Votre franchise '. $franchise->getName(). ' a été créer')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
 
         $mailer->send($email);
 
