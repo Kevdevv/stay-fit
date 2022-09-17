@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 #[Route('/admin/franchise')]
 class AdminFranchiseController extends AbstractController
@@ -29,7 +31,7 @@ class AdminFranchiseController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_franchise_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FranchiseRepository $franchiseRepository): Response
+    public function new(Request $request, FranchiseRepository $franchiseRepository, MailerInterface $mailer): Response
     {
         $franchise = new Franchise();
         $form = $this->createForm(FranchiseType::class, $franchise);
@@ -37,6 +39,19 @@ class AdminFranchiseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $franchiseRepository->add($franchise, true);
+
+            $email = (new Email())
+            ->from('Stay@Fit.com')
+            ->to($franchise->getMail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Votre Franchise a été créer')
+            ->text('Votre franchise '. $franchise->getName(). ' a été créer')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
 
             return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }

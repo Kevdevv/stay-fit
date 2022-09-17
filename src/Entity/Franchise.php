@@ -36,6 +36,9 @@ class Franchise
     #[ORM\Column]
     private ?bool $active = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $mail = null;
+
     public function __construct()
     {
         $this->structure = new ArrayCollection();
@@ -144,6 +147,18 @@ class Franchise
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }
