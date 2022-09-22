@@ -90,14 +90,42 @@ class AdminStructureController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_structure_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Structure $structure, StructureRepository $structureRepository): Response
+    public function edit(Request $request, Structure $structure, StructureRepository $structureRepository, FranchiseRepository $franchiseRepository, MailerInterface $mailer): Response
     {
+        //$franchise = $franchiseRepository->find($request->query->get('id'));
+
         $form = $this->createForm(StructureType::class, $structure);
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $structureRepository->add($structure, true);
+
+             $email = (new Email())
+            ->from('Stay@Fit.com')
+            ->to($structure->getMail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Des modification ont été effectué')
+            ->text('Les permissions globales de votre franchise ont été modifié')
+            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+/*
+            $emailTwo = (new Email())
+            ->from('Stay@Fit.com')
+            ->to($franchise->getMail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Des modification ont été effectué')
+            ->text('Les permissions globales de votre franchise ont été modifié')
+            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+
+        $mailer->send($emailTwo);*/
 
             return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }

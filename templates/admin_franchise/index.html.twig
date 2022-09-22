@@ -16,7 +16,29 @@
 <div class="d-flex justify-content-center flex-wrap">
 
 {% for franchise in franchises %}
+	{% if app.user %}
+	{% if 'ROLE_USER' in app.user.roles and app.user.email == franchise.mail %}
 	<div class="card me-3 mt-5" style="width: 18rem;">
+		<div class="card-body">
+			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
+			<h5 class="card-title">{{ franchise.name }}</h5>
+			<h6 class="card-subtitle mb-2 text-muted">Permission globale</h6>
+			<p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>
+			<p class="card-text">{{ franchise.mailing ? 'Faire son mailing activé' : 'Faire son mainling désactivé' }}</p>
+			<p class="card-text">{{ franchise.promotionSalle ? 'Promption de la salle activé' : 'Promotion de la salle désactivé' }}</p>
+			<p class="card-text">{{ franchise.teamPlanning ? 'Gérer le planning d\'équipe activé' : 'Gérer le planning d\'équipe désactivé' }}</p>
+			<div class="d-flex justify-content-between">
+			<a class="btn btn-primary" href="{{ path('app_admin_franchise_show', {'id': franchise.id}) }}">Voir les structures</a>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% endif %}
+
+	{% if app.user %}
+	{% if 'ROLE_ADMIN' in app.user.roles %}
+
+		<div class="card me-3 mt-5" style="width: 18rem;">
 		<div class="card-body">
 			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
 			<h5 class="card-title">{{ franchise.name }}</h5>
@@ -31,8 +53,16 @@
 			</div>
 		</div>
 	</div>
+
+	{% endif %}
+	{% endif %}
 {% endfor %}
 </div>
+
+{% if app.user %}
+{% if 'ROLE_ADMIN' in app.user.roles %}
 <a class="btn btn-primary ms-2 mt-4 mb-3" href="{{ path('app_admin_franchise_new') }}">Ajouter une franchise</a>
+{% endif %}
+{% endif %}
 
 {% endblock %}

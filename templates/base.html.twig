@@ -27,9 +27,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if app.user %}
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="{{ path('app_admin_franchise_index') }}">Liste des franchises</a>
 				</li>
+                {% endif %}
+                {% if app.user %}
+	            {% if 'ROLE_ADMIN' in app.user.roles %}
+                <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">Créer un compte</a>
+				</li>
+                {% endif %}
+                {% endif %}
 				<li class="nav-item">
 				{% if app.user %}
 					<a class="btn btn-danger" aria-current="page" href="{{ path('app_logout') }}">Se deconnecter</a>

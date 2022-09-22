@@ -71,13 +71,26 @@ class AdminFranchiseController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_admin_franchise_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Franchise $franchise, FranchiseRepository $franchiseRepository): Response
+    public function edit(Request $request, Franchise $franchise, FranchiseRepository $franchiseRepository, MailerInterface $mailer): Response
     {
         $form = $this->createForm(FranchiseType::class, $franchise);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $franchiseRepository->add($franchise, true);
+
+            $email = (new Email())
+            ->from('Stay@Fit.com')
+            ->to($franchise->getMail())
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Des modification ont été effectué')
+            ->text('Les permissions globales de votre franchise ont été modifié')
+            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+
+        $mailer->send($email);
 
             return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }
