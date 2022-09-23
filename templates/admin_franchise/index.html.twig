@@ -8,7 +8,6 @@
 			{{ form_start(form) }}
 			   {{ form_row(form.name) }}
 			   {{ form_row(form.options) }}
-			   <button type="submit" class="btn btn-primary">Rechercher</button>
 			   <a class="btn btn-info" aria-current="page" href="{{ path('app_admin_franchise_index') }}">Réinitialiser</a>
 			{{ form_end(form) }}
 	</div>		
@@ -17,7 +16,7 @@
 
 {% for franchise in franchises %}
 	{% if app.user %}
-	{% if 'ROLE_USER' in app.user.roles and app.user.email == franchise.mail %}
+	{% if 'ROLE_FRANCHISE' in app.user.roles and app.user.email == franchise.mail %}
 	<div class="card me-3 mt-5" style="width: 18rem;">
 		<div class="card-body">
 			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
@@ -40,7 +39,7 @@
 
 		<div class="card me-3 mt-5" style="width: 18rem;">
 		<div class="card-body">
-			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
+			<p class="card-text">{{ franchise.active ? 'Franchise on' : 'Franchise off' }}</p>
 			<h5 class="card-title">{{ franchise.name }}</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Permission globale</h6>
 			<p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>

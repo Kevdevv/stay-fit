@@ -17,8 +17,8 @@ class FranchiseSearchType extends AbstractType
             ->add('name')
             ->add('options', ChoiceType::class, [
                 'choices'  => [
-                    'activé' => 'activé',
-                    'désactivé' => 'désactivé',
+                    'franchise on' => 'franchise on',
+                    'franchise off' => 'franchise off',
                  ],
             ])
         ;
