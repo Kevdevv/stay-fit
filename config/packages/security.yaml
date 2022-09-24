@@ -26,6 +26,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 default_target_path: app_admin_franchise_index
+                enable_csrf: true
             
 
             # activate different ways to authenticate

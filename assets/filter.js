@@ -1,4 +1,3 @@
-//const FilterForm = document.querySelector('#filters')
 const key = document.getElementById('name')
 const options = document.getElementById('options')
 
@@ -6,7 +5,6 @@ const options = document.getElementById('options')
 function filter (e) {
     let search = e.target.value
     let cards = document.querySelectorAll('.card')
-    console.log(cards)
 
     filterElements(search, cards)
     
