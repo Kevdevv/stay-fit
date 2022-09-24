@@ -23,7 +23,6 @@ class RegistrationFormType extends AbstractType
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
                     'Franchisé' => 'ROLE_FRANCHISE',
-                    'Gérant de salle' => 'ROLE_GERANT',
                 ],
                 'expanded' => true,
                 'multiple' => true,
