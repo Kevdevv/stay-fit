@@ -54,8 +54,7 @@ class AdminStructureController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('La structure a été créer')
-            ->text('La structure '. $structure->getName(). ' a été créer')
-            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+            ->html('La structure '. $structure->getName(). ' a été créer');
 
         $mailer->send($email);
 
@@ -67,10 +66,10 @@ class AdminStructureController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('La structure a été créer')
-            ->text('La structure '. $structure->getName(). ' a été créer')
-            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+            ->html('La structure '. $structure->getName(). ' a été créer');
 
         $mailer->send($emailTwo);
+
 
             return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -113,19 +112,6 @@ class AdminStructureController extends AbstractController
             ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
 
         $mailer->send($email);
-/*
-            $emailTwo = (new Email())
-            ->from('Stay@Fit.com')
-            ->to($franchise->getMail())
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('Des modification ont été effectué')
-            ->text('Les permissions globales de votre franchise ont été modifié')
-            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
-
-        $mailer->send($emailTwo);*/
 
             return $this->redirectToRoute('app_admin_franchise_index', [], Response::HTTP_SEE_OTHER);
         }

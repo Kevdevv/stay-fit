@@ -48,8 +48,7 @@ class AdminFranchiseController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Votre Franchise a été créer')
-            ->text('Votre franchise '. $franchise->getName(). ' a été créer')
-            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+            ->html('Votre franchise '. $franchise->getName(). ' a été créer');
 
         $mailer->send($email);
 
@@ -87,8 +86,7 @@ class AdminFranchiseController extends AbstractController
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject('Des modification ont été effectué')
-            ->text('Les permissions globales de votre franchise ont été modifié')
-            ->html('<p>See <b>Twig</b> integration for better HTML integration!</p>');
+            ->html('Les permissions globales de votre franchise ont été modifié');
 
         $mailer->send($email);
 
