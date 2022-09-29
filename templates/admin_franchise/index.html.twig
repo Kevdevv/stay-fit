@@ -19,7 +19,7 @@
 	{% if 'ROLE_FRANCHISE' in app.user.roles and app.user.email == franchise.mail %}
 	<div class="card me-3 mt-5" style="width: 18rem;">
 		<div class="card-body">
-			<p class="card-text">{{ franchise.active ? 'Franchise activé' : 'Franchise désactivé' }}</p>
+			<p class="card-text">{{ franchise.active ? 'Franchise on' : 'Franchise off' }}</p>
 			<h5 class="card-title">{{ franchise.name }}</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Permission globale</h6>
 			<p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>

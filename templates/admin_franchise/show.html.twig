@@ -8,6 +8,7 @@
      {% for structure in franchise.structure %}
      <div class="card mt-4 me-4" style="width: 18rem;">
         <div class="card-body">
+        	<p class="card-text">{{ structure.active ? 'Structure on' : 'Structure off' }}</p>
             <h5 class="card-title">{{ structure.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ structure.address }}</h6>
             <p class="card-text">{{ franchise.sellDrink ? 'Vente de boissons activé' : 'Vente de boissons désactivé' }}</p>

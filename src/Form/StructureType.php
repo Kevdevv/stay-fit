@@ -16,6 +16,7 @@ class StructureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('active')
             ->add('name')
             ->add('mail')
             ->add('address')
